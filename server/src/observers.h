@@ -22,13 +22,13 @@ class PeerConnectionObserver : public webrtc::PeerConnectionObserver {
     void OnSignalingChange(webrtc::PeerConnectionInterface::SignalingState /* new_state */) {}
 
     // Override adding a stream.
-    void OnAddStream(webrtc::MediaStreamInterface* /* stream */) {}
+    void OnAddStream(rtc::scoped_refptr<webrtc::MediaStreamInterface> stream) {}
 
     // Override removing a stream.
-    void OnRemoveStream(webrtc::MediaStreamInterface* /* stream */) {}
+    void OnRemoveStream(rtc::scoped_refptr<webrtc::MediaStreamInterface> stream) {}
 
     // Override data channel change.
-    void OnDataChannel(webrtc::DataChannelInterface* channel) {
+    void OnDataChannel(rtc::scoped_refptr<webrtc::DataChannelInterface> channel) {
       on_data_channel(channel);
     }
 
